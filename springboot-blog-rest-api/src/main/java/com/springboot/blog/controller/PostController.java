@@ -135,6 +135,20 @@ public class PostController {
        return ResponseEntity.ok(posts);
     }
 
+    //Search for posts REST API
+    @Operation(
+            summary = "Search post REST API",
+            description = "Search post from the database"
+    )
+    @ApiResponse(
+            responseCode = "200",
+            description = "Http status 200 OK"
+    )
+    @GetMapping("/search")
+    public ResponseEntity<List<PostDto>>searchPosts(@RequestParam("query") String query){
+        return ResponseEntity.ok(postService.searchPosts(query));
+    }
+
 
 
 

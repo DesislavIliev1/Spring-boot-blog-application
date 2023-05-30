@@ -119,6 +119,13 @@ public class PostServiceimpl implements PostService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<PostDto> searchPosts(String query) {
+       List<Post> posts = postRepository.searchPosts(query);
+        return posts.stream().map((post)-> mapToDto(post))
+                .collect(Collectors.toList());
+    }
+
     //convert Entity to Dto
     private PostDto mapToDto(Post post){
         PostDto postDto = mapper.map(post, PostDto.class);
